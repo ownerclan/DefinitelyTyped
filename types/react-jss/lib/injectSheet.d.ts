@@ -1,5 +1,6 @@
 import * as CSS from "csstype";
 import { CreateStyleSheetOptions, JSS } from "jss";
+import { Style } from "jss/css";
 import * as React from "react";
 import {
   channel,
@@ -60,15 +61,9 @@ export type PropInjector<InjectedProps, AdditionalProps = {}> = <
     AdditionalProps
 >;
 
-export interface CSSProperties extends CSS.Properties<number | string> {
-  // Allow pseudo selectors and media queries
-  [k: string]:
-    | CSS.Properties<number | string>[keyof CSS.Properties]
-    | CSSProperties;
-}
 export type Styles<ClassKey extends string = string> = Record<
   ClassKey,
-  CSSProperties
+  Style
 >;
 export type StyleCreator<C extends string = string, T extends {} = {}> = (
   theme: T
